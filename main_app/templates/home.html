@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Home</h1>
+
+{% for article in articles %}
+<div>
+    <ul>
+        <li>{{ article.headline.main }}</li>
+        <li>{{ article.abstract }}</li>
+    </ul>
+</div>
+    
+{% endfor %}
+
+{% endblock %}
