@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Articles about {{ query|capfirst }}</h1>
+
+{% for article in articles %}
+<div>
+    <ul>
+        <a href="{{ article.web_url }}"><li>{{ article.headline.main }}</li></a>
+        <form method="POST" action="{% url 'save_article' %}">
+            {% csrf_token %}
+            <input type="hidden" name="web_url" value="{{ article.web_url }}">
+            <input type="hidden" name="headline" value="{{ article.headline.main }}">
+            <button type="submit">Save</button>
+        </form>
+        <li>{{ article.abstract }}</li>
+        <li>{{ article.pub_date }}</li>
+    </ul> 
+</div>
+    
+{% endfor %}
+
+{% endblock %}

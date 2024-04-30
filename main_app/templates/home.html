@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Home</h1>
-
-{% for article in articles %}
 <div>
-    <ul>
-        <li>{{ article.headline.main }}</li>
-        <li>{{ article.abstract }}</li>
-    </ul>
+    <form action="{% url 'queried_articles' %}" method="GET">
+        <input type="text" name="query" placeholder="Keyword...">&nbsp;&nbsp;From:
+        <input type="date" name="begin_date" placeholder="From...">&nbsp;&nbsp;To:
+        <input type="date" name="end_date" placeholder="To...">
+        <button type="submit">Search</button>
+    </form>
+
 </div>
-    
-{% endfor %}
+
 
 {% endblock %}

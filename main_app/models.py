@@ -19,8 +19,6 @@ CATEGORY = (
 class Article(models.Model):
     headline = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
-    date = models.DateField()
-    description = models.TextField(max_length=250)
     category = models.CharField(
     max_length=1,
     choices=CATEGORY,
