@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .models import User, Article
+from django.http import HttpResponse
 
 import requests, re
 import environ 
@@ -17,11 +18,9 @@ def logout_view(request):
 def queried_articles(request):
     date = request.GET.get('begin_date', '')
     begin_date = re.sub(r'-', '', date)
-    print(begin_date)
     
     date = request.GET.get('end_date', '')
     end_date = re.sub(r'-', '', date)
-    print(end_date)
     query = request.GET.get('query')
 
     
@@ -29,7 +28,6 @@ def queried_articles(request):
 
     if begin_date:
         base_url += f'&begin_date={begin_date}'
-        print(base_url)
     if end_date:
         base_url += f'&end_date={end_date}'
 
@@ -40,5 +38,11 @@ def queried_articles(request):
 def home(request):
     return render(request, 'home.html')
 
-# def save_article(request, article):
+def save_article(request):
+    web_url = request.POST.get('web_url')
+    headline = request.POST.get('headline')
+    user = request.user
+    article = Article(headline=headline, link=web_url, user=user)
+    article.save()
+    return HttpResponse("Article saved successfully.")
 
