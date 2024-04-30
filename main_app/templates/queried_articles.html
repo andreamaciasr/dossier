@@ -11,6 +11,7 @@
             {% csrf_token %}
             <input type="hidden" name="web_url" value="{{ article.web_url }}">
             <input type="hidden" name="headline" value="{{ article.headline.main }}">
+            <input type="hidden" name="pub_date" value="{{ article.pub_date }}">
             <button type="submit">Save</button>
         </form>
         <li>{{ article.abstract }}</li>

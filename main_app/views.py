@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .models import User, Article
-from django.http import HttpResponse
+from datetime import datetime
+from django import forms
+from django.forms import Select
+from django.db import models
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 import requests, re
 import environ 
@@ -41,8 +45,14 @@ def home(request):
 def save_article(request):
     web_url = request.POST.get('web_url')
     headline = request.POST.get('headline')
+    date = request.POST.get('pub_date')
+    date = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S%z")
+    date = date.strftime("%Y-%m-%d")
     user = request.user
-    article = Article(headline=headline, link=web_url, user=user)
+    article = Article(headline=headline, link=web_url, user=user, date=date)
     article.save()
-    return HttpResponse("Article saved successfully.")
+    return render(request, 'articles/detail.html', {'article': article})
+
+
+
 
