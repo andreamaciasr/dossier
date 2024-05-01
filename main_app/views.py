@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .models import User, Article
+from .models import Article, Tag
+from .forms import TagForm
 from datetime import datetime
 from django import forms
 from django.forms import Select
@@ -51,8 +52,30 @@ def save_article(request):
     user = request.user
     article = Article(headline=headline, link=web_url, user=user, date=date)
     article.save()
+    return redirect('saved_articles')
+
+def saved_articles(request):
+  articles = Article.objects.all()
+  tag_form = TagForm()
+  return render(request, 'articles/saved_articles.html', {
+    'articles': articles, 'tag_form': tag_form
+})
+
+def add_tag(request, article_id):
+    tag_form = TagForm(request.POST)
+    article = Article.objects.get(id=article_id)
+    if tag_form.is_valid():
+        tag = tag_form.save()
+        article.tags.add(tag)
+    return redirect('saved_articles')
+
+
+def article_detail(request, article_id):
+    article = Article.objects.get(id=article_id)
     return render(request, 'articles/detail.html', {'article': article})
 
-
+class TagCreate(CreateView):
+    model = Tag
+    fields = '__all__'
 
 

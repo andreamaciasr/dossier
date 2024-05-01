@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    {% for article in articles %}
+    <ul>
+        <li><a href="{{ article.link }}">{{ article.headline }}</a></li>
+        <li>Publication date: {{ article.date }}</li>
+        <form action="{% url 'add_tag' article.id %}" method="POST">
+            {% csrf_token %}
+            {{ tag_form.as_p }}
+            <input type="submit" class="btn" value="Add Tag">
+        </form>
+    </ul>
+</div>
+{% endfor %}
+
+<script>
+
+    const selectEl = document.getElementById('id_name');
+    console.log(selectEl);
+    M.FormSelect.init(selectEl);
+  </script>
+
+
+{% endblock %}
