@@ -11,6 +11,13 @@
             {{ tag_form.as_p }}
             <input type="submit" class="btn" value="Add Tag">
         </form>
+        <div>
+            {% if article.tags.all %}
+                {% for tag in article.tags.all %}
+                    <div>{{ tag.name }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
     </ul>
 </div>
 {% endfor %}
@@ -20,7 +27,7 @@
     const selectEl = document.getElementById('id_name');
     console.log(selectEl);
     M.FormSelect.init(selectEl);
-  </script>
+</script>
 
 
 {% endblock %}
