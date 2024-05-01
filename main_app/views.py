@@ -61,13 +61,27 @@ def saved_articles(request):
     'articles': articles, 'tag_form': tag_form
 })
 
+# def add_tag(request, article_id):
+#     tag_form = TagForm(request.POST)
+#     article = Article.objects.get(id=article_id)
+#     if tag_form.is_valid():
+#         tag = tag_form.save()
+#         article.tags.add(tag)
+#     return redirect('saved_articles')
+
 def add_tag(request, article_id):
-    tag_form = TagForm(request.POST)
     article = Article.objects.get(id=article_id)
-    if tag_form.is_valid():
-        tag = tag_form.save()
-        article.tags.add(tag)
+    tag_name = request.POST.get('name')
+    tag = Tag.objects.filter(name=tag_name).first()
+    if not tag:
+        tag = Tag.objects.create(name=tag_name)
+    article.tags.add(tag)
     return redirect('saved_articles')
+
+
+
+
+
 
 
 def article_detail(request, article_id):
@@ -95,5 +109,5 @@ def delete_tag(request, article_id, tag_id):
     article.tags.remove(tag)
 
     if tag.article_set.count() == 0:
-        tag.delete()
+        tag.delete()    
     return redirect('saved_articles')
