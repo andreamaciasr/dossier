@@ -10,7 +10,7 @@ class Tag(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('saved_articles', kwargs={'pk': self.id})
+        return reverse('saved_articles')
 
 class Article(models.Model):
     headline = models.CharField(max_length=200)

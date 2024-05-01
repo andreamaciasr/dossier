@@ -79,11 +79,6 @@ def add_tag(request, article_id):
     return redirect('saved_articles')
 
 
-
-
-
-
-
 def article_detail(request, article_id):
     article = Article.objects.get(id=article_id)
     return render(request, 'articles/detail.html', {'article': article})
@@ -94,9 +89,9 @@ def show_tag(request, tag_id):
     return render(request, 'tags/show_tag.html', {'articles': articles, 'tag': tag})
 
 
-# class TagUpdate(UpdateView):
-#   model = Tag
-#   fields = ['name']
+class TagUpdate(UpdateView):
+  model = Tag
+  fields = ['name']
 
 # class TagDelete(DeleteView):
 #     model = Tag
