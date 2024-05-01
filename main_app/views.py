@@ -74,8 +74,26 @@ def article_detail(request, article_id):
     article = Article.objects.get(id=article_id)
     return render(request, 'articles/detail.html', {'article': article})
 
-class TagCreate(CreateView):
-    model = Tag
-    fields = '__all__'
+def show_tag(request, tag_id):
+    tag = Tag.objects.get(id=tag_id)
+    articles = tag.article_set.all()
+    return render(request, 'tags/show_tag.html', {'articles': articles, 'tag': tag})
 
 
+# class TagUpdate(UpdateView):
+#   model = Tag
+#   fields = ['name']
+
+# class TagDelete(DeleteView):
+#     model = Tag
+#     success_url = '/saved_articles'
+
+def delete_tag(request, article_id, tag_id):
+    article = Article.objects.get(id=article_id)
+    tag = Tag.objects.get(id=tag_id)
+
+    article.tags.remove(tag)
+
+    if tag.article_set.count() == 0:
+        tag.delete()
+    return redirect('saved_articles')
