@@ -1,1 +1,1 @@
-WSGI_APPLICATION = 'infostream.wsgi.application'
+web: gunicorn infostream.wsgi
