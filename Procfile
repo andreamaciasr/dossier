@@ -1,0 +1,1 @@
+WSGI_APPLICATION = 'infostream.wsgi.application'
