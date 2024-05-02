@@ -10,7 +10,7 @@
         <form action="{% url 'add_tag' article.id %}" method="POST">
             {% csrf_token %}
             {{ tag_form.as_p }}
-            <input type="submit" class="btn" value="Add Hashtag">
+            <input type="submit" class="btn-small" value="Add Hashtag">
         </form>
         <div>
             {% if article.tags.all %}

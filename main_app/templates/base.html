@@ -14,16 +14,17 @@
 </head>
 
 <body>
-    <header class="navbar-fixed">
-        <nav>
+    <header class="navbar-wrapper">
+        <nav class="white">
             <div>
                 <ul>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-                    <li><a href="{% url 'home' %}">Search</a></li>
-                    <li><a href="{% url 'saved_articles' %}">My Articles</a></li>
+                    <li><a href="{% url 'logout' %}" class="black-text">Log Out</a></li>
+                    <li><a href="{% url 'home' %}" class="black-text">Search</a></li>
+                    <li><a href="{% url 'saved_articles' %}" class="black-text">My Articles</a></li>
                     {% else %}
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a href="{% url 'signup' %}" class="black-text">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}" class="black-text">Log In</a></li>
                     {% endif %}
                 </ul>
                 <ul class="right">

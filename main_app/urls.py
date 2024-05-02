@@ -16,4 +16,5 @@ urlpatterns = [
         views.delete_tag,
         name="delete_tag",
     ),
+    path('accounts/signup/', views.signup, name='signup'),
 ]

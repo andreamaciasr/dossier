@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block content %}
 
 <h1>Log In</h1>
@@ -7,6 +8,6 @@
     {{ form.as_p }}
     <input type="hidden" name="next" value="{{ next }}">
     <button type="submit" class="btn">Log In</button>
-  </form>
+</form>
   
 {% endblock %}
