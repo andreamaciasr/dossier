@@ -7,19 +7,46 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Article',
+            name="Article",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('headline', models.CharField(max_length=200)),
-                ('link', models.CharField(max_length=200)),
-                ('date', models.DateField()),
-                ('description', models.TextField(max_length=250)),
-                ('category', models.CharField(choices=[('G', 'General'), ('S', 'Science'), ('C', 'Culture'), ('G', 'Geopolitics'), ('E', 'Environment'), ('M', 'Middle East'), ('P', 'Palestine'), ('L', 'Latin America'), ('A', 'Africa'), ('U', 'US Politics'), ('S', 'Asia'), ('X', 'Economics')], default='G', max_length=1)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("headline", models.CharField(max_length=200)),
+                ("link", models.CharField(max_length=200)),
+                ("date", models.DateField()),
+                ("description", models.TextField(max_length=250)),
+                (
+                    "category",
+                    models.CharField(
+                        choices=[
+                            ("G", "General"),
+                            ("S", "Science"),
+                            ("C", "Culture"),
+                            ("G", "Geopolitics"),
+                            ("E", "Environment"),
+                            ("M", "Middle East"),
+                            ("P", "Palestine"),
+                            ("L", "Latin America"),
+                            ("A", "Africa"),
+                            ("U", "US Politics"),
+                            ("S", "Asia"),
+                            ("X", "Economics"),
+                        ],
+                        default="G",
+                        max_length=1,
+                    ),
+                ),
             ],
         ),
     ]

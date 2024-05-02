@@ -7,13 +7,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main_app', '0003_remove_article_date_remove_article_description'),
+        ("main_app", "0003_remove_article_date_remove_article_description"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='article',
-            name='date',
-            field=models.DateField(default=django.utils.timezone.now, verbose_name='Published Date'),
+            model_name="article",
+            name="date",
+            field=models.DateField(
+                default=django.utils.timezone.now, verbose_name="Published Date"
+            ),
         ),
     ]

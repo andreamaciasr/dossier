@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main_app', '0006_tag_remove_article_category'),
+        ("main_app", "0006_tag_remove_article_category"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='article',
-            name='tags',
-            field=models.ManyToManyField(to='main_app.tag'),
+            model_name="article",
+            name="tags",
+            field=models.ManyToManyField(to="main_app.tag"),
         ),
     ]
