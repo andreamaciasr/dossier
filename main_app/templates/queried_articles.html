@@ -3,24 +3,70 @@
 
 <h1>Articles about {{ query|capfirst }}</h1>
 
-{% for article in articles %}
-<div>
-    <ul>
-        <a href="{{ article.web_url }}"><li>{{ article.headline.main }}</li></a>
-        {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'save_article' %}">
-            {% csrf_token %}
-            <input type="hidden" name="web_url" value="{{ article.web_url }}">
-            <input type="hidden" name="headline" value="{{ article.headline.main }}">
-            <input type="hidden" name="pub_date" value="{{ article.pub_date }}">
-            <button type="submit">Save</button>
-        </form>
-        {% endif %}
-        <li>{{ article.abstract }}</li>
-        <li>{{ article.pub_date }}</li>
-    </ul> 
+<div class="row">
+    <div class="col s12 m4">
+        <h3>New York Times Articles</h3>
+        {% for article in articles %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title"><a href="{{ article.web_url }}">{{ article.headline.main }}</a></span>
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'save_article' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="web_url" value="{{ article.web_url }}">
+                    <input type="hidden" name="headline" value="{{ article.headline.main }}">
+                    <input type="hidden" name="pub_date" value="{{ article.pub_date }}">
+                    <button type="submit" class="btn">Save</button>
+                </form>
+                {% endif %}
+                <p>{{ article.abstract }}</p>
+                <p>{{ article.pub_date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col s12 m4">
+        <h3>The Guardian Articles</h3>
+        {% for article in the_guardian_articles %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title"><a href="{{ article.webUrl }}">{{ article.webTitle }}</a></span>
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'save_article' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="web_url" value="{{ article.webUrl }}">
+                    <input type="hidden" name="headline" value="{{ article.webTitle }}">
+                    <input type="hidden" name="pub_date" value="{{ article.webPublicationDate }}">
+                    <button type="submit" class="btn">Save</button>
+                </form>
+                {% endif %}
+                <p>{{ article.webPublicationDate }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
-    
-{% endfor %}
+    <div class="col s12 m4">
+        <h3>Democracy Now! Recent articles on {{ query|capfirst }}</h3>
+        {% for article in democracy_now_articles %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title"><a href="{{ article.url }}">{{ article.title }}</a></span>
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'save_article' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="web_url" value="{{ article.href }}">
+                    <input type="hidden" name="headline" value="{{ article.text }}">
+                    <button type="submit" class="btn">Save</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
 
 {% endblock %}

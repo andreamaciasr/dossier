@@ -8,6 +8,7 @@ from django import forms
 from django.forms import Select
 from django.db import models
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from bs4 import BeautifulSoup
 
 import requests, re
 import environ 
@@ -22,23 +23,54 @@ def logout_view(request):
 
 def queried_articles(request):
     date = request.GET.get('begin_date', '')
+    the_guardian_begin_date = date
     begin_date = re.sub(r'-', '', date)
     
     date = request.GET.get('end_date', '')
+    the_guardian_end_date = date
     end_date = re.sub(r'-', '', date)
     query = request.GET.get('query')
-
     
     base_url = f'https://api.nytimes.com/svc/search/v2/articlesearch.json?q={query}&api-key={env('NYT_KEY')}'
+    the_guardian_base_url = f'https://content.guardianapis.com/search?q={query}&api-key={env('THE_GUARDIAN_KEY')}'
+    democracy_now_url = 'https://www.democracynow.org/topics/{query}'
 
     if begin_date:
         base_url += f'&begin_date={begin_date}'
+        the_guardian_base_url += f'&from-date={the_guardian_begin_date}'
+
     if end_date:
         base_url += f'&end_date={end_date}'
+        the_guardian_base_url += f'&to-date={the_guardian_end_date}'
 
     response = requests.get(base_url).json()
     articles = response['response']['docs']  
-    return render(request, 'queried_articles.html', {'articles': articles, 'query': query})
+
+    the_guardian_response = requests.get(the_guardian_base_url).json()
+    the_guardian_articles = the_guardian_response['response']['results']
+
+
+    democracy_now_articles = scrapper(query)
+   
+    print(democracy_now_articles)
+    return render(request, 'queried_articles.html', {'articles': articles, 'the_guardian_articles': the_guardian_articles, 'query': query, 'democracy_now_articles': democracy_now_articles})
+
+def scrapper(query):
+  response = requests.get(f'https://www.democracynow.org/topics/{query}')
+  if response.status_code == 200:
+    soup = BeautifulSoup(response.text, "html.parser")
+    articles = soup.find_all("a", attrs={"data-ga-action": "Topic: Story Headline"})
+
+    if articles: 
+       article_list = []
+       for article in articles:
+         article_dict = {"title": article.text.strip(), "url": "https://www.democracynow.org/" + article["href"]}
+         article_list.append(article_dict) 
+       return article_list
+    else: 
+       return "No articles found."
+  else:
+    return "Failed to retrieve the page."
 
 def home(request):
     return render(request, 'home.html')
@@ -53,6 +85,7 @@ def save_article(request):
     article = Article(headline=headline, link=web_url, user=user, date=date)
     article.save()
     return redirect('saved_articles')
+
 
 def saved_articles(request):
   articles = Article.objects.all()
@@ -106,3 +139,4 @@ def delete_tag(request, article_id, tag_id):
     if tag.article_set.count() == 0:
         tag.delete()    
     return redirect('saved_articles')
+

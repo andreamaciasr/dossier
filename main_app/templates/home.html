@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div><h1> Search for articles </h1></div>
 <div>
     <form action="{% url 'queried_articles' %}" method="GET">
         <input type="text" name="query" placeholder="Keyword...">&nbsp;&nbsp;From:
