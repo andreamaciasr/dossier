@@ -8,41 +8,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>InfoStream</title>
- 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
 </head>
 
 <body>
-    <header class="navbar-wrapper">
-        <nav class="white">
-            <div>
-                <ul>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}" class="black-text">Log Out</a></li>
-                    <li><a href="{% url 'home' %}" class="black-text">Search</a></li>
-                    <li><a href="{% url 'saved_articles' %}" class="black-text">My Articles</a></li>
-                    {% else %}
-                    <li><a href="{% url 'signup' %}" class="black-text">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}" class="black-text">Log In</a></li>
-                    {% endif %}
-                </ul>
-                <ul class="right">
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <nav class="nav-wrapper white">
+        <div class="container">
+            <a href="{% url 'home' %}" class="brand-logo" style="margin-top: 10px;"><img src="{% static '/images/logo.png' %}" alt="Logo"></a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                <i class="material-icons black-text" text>menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}" class="black-text">Log Out</a></li>
+                <li><a href="{% url 'home' %}" class="black-text">Search</a></li>
+                <li><a href="{% url 'saved_articles' %}" class="black-text">My Articles</a></li>
+                {% else %}
+                <li><a href="{% url 'signup' %}" class="black-text">Sign Up</a></li>
+                <li><a href="{% url 'login' %}" class="black-text">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-links">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}" class="black-text">Log Out</a></li>
+        <li><a href="{% url 'home' %}" class="black-text">Search</a></li>
+        <li><a href="{% url 'saved_articles' %}" class="black-text">My Articles</a></li>
+        {% else %}
+        <li><a href="{% url 'signup' %}" class="black-text">Sign Up</a></li>
+        <li><a href="{% url 'login' %}" class="black-text">Log In</a></li>
+        {% endif %}
+    </ul>
+
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
-    <!-- <footer class="blue page-footer">
-       <div class="right">All Rights Reserved, &copy; 2022 Cat Collector &nbsp;</div>
-    </footer> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {});
+        });
+    </script>
+    
+    
 </body>
 
 </html>

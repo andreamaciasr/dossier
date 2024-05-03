@@ -2,20 +2,18 @@
 {% block content %}
 
 <div>
-    <h2> Search for articles </h2>
+    <h2> Search for Articles </h2>
 </div>
 <div>
     <form action="{% url 'queried_articles' %}" method="GET">
-        <input type="text" name="query" placeholder="Keyword...">&nbsp;&nbsp;From:
-        <input type="date" name="begin_date" placeholder="">&nbsp;&nbsp;To:
-        <input type="date" name="end_date" placeholder="">
-        <button type="submit" class="butn waves-effect waves-light center-align">
-            <span style="font-size: 1.3em;">Search</span>
-            <i class="material-icons right">search</i>
-        </button>
-        
+        <input type="text" name="query" placeholder="Keyword..." style="box-shadow: none;">&nbsp;&nbsp;From:
+        <input type="date" name="begin_date" placeholder="" style="box-shadow: none;">&nbsp;&nbsp;To:
+        <input type="date" name="end_date" placeholder="" style="box-shadow: none;">
+        <button type="submit" class="butn waves-effect waves-light" style="background: none; border: none; padding: 10px; margin-top: 5px; float: right;">
+            <span style="font-size: 1.5em;"></span>
+            <i class="material-icons" style="vertical-align: middle;">search</i>
+        </button> 
     </form>
-
 </div>
 
 

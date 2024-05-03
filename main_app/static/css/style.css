@@ -1,15 +1,16 @@
 .button {
-    font-family: "Cheltenham", Georgia, serif; /* Use a serif font similar to Cheltenham */
-    font-size: 1rem; /* Adjust the font size as needed */
-    font-weight: bold; /* Use bold font weight */
-    text-transform: uppercase; /* Convert text to uppercase */
-    padding: 10px 20px; /* Add padding to create space inside the button */
-    border: 1px solid #ccc; /* Add a border */
-    background-color: #fff; /* Set the background color */
-    color: #333; /* Set the text color */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s, color 0.3s; /* Add transition effect */
+    font-family: "Cheltenham", Georgia, serif; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    padding: 10px 20px; 
+    border: 1px solid #ccc; 
+    background-color: #fff; 
+    color: #333; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
 }
+
 
 
 .button:hover {
@@ -34,7 +35,7 @@ h1, h2, h3 {
 
 .title {
     font-family: "Cheltenham", Georgia, serif; 
-    font-size: 7.5rem; 
+    font-size: 1.3rem; 
     font-weight: bold; 
     line-height: 1.2; 
     color: #333;

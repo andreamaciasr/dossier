@@ -7,7 +7,7 @@
 <div>
     {% for article in articles %}
     <ul>
-        <li><a href="{{ article.link }}">{{ article.headline }}</a></li>
+        <li><a class="title" href="{{ article.link }}">{{ article.headline }}</a></li>
         <li>Publication date: {{ article.date }}</li>
     </ul>
         <form action="{% url 'add_tag' article.id %}" method="POST" class="small-input-form">

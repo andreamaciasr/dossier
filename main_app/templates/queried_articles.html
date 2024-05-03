@@ -42,7 +42,7 @@
         {% for article in the_guardian_articles %}
         <div>
             <div>
-                <span style="display: inline-flex;"><a href="{{ article.webUrl }}">{{ article.webTitle }}</a></span>
+                <span class="title" style="display: inline-flex;"><a href="{{ article.webUrl }}">{{ article.webTitle }}</a></span>
                 <p style="display: inline-block;">{{ article.webPublicationDate|slice:":10" }}</p>
                 {% if user.is_authenticated %}
                 <form method="POST" action="{% url 'save_article' %}" style="display: inline-block; vertical-align: middle;">
@@ -65,7 +65,7 @@
         {% for article in democracy_now_articles %}
         <div>
             <div>
-                <span style="display: inline-flex;"><a href="{{ article.url }}">{{ article.title }}</a></span>
+                <span class="title" style="display: inline-flex;"><a href="{{ article.url }}">{{ article.title }}</a></span>
                 <p style="display: inline-block;">{{ article.date }}</p>
                 {% if user.is_authenticated %}
                 <form method="POST" action="{% url 'save_article' %}" style="display: inline-block; vertical-align: middle;">
