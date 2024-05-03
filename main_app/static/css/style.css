@@ -11,23 +11,39 @@
     transition: background-color 0.3s, color 0.3s; /* Add transition effect */
 }
 
-/* Button hover effect */
+
 .button:hover {
-    background-color: #333; /* Change background color on hover */
-    color: #fff; /* Change text color on hover */
+    background-color: #333; 
+    color: #fff; /
 }
 
-/* Button focus effect */
+
 .button:focus {
-    outline: none; /* Remove default focus outline */
-    box-shadow: 0 0 0 2px #333; /* Add custom focus outline */
+    outline: none; 
+    box-shadow: 0 0 0 2px #333; 
 }
 
 h1, h2, h3 {
-    font-family: "Cheltenham", Georgia, serif; /* Use a serif font similar to Cheltenham */
-    font-size: 2.5rem; /* Adjust the font size as needed */
-    font-weight: bold; /* Use bold font weight */
-    line-height: 1.2; /* Set the line height for better readability */
-    color: #333; /* Adjust the color to match the NY Times style */
-    margin-bottom: 20px; /* Add some bottom margin to create space */
+    font-family: "Cheltenham", Georgia, serif; 
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    line-height: 1.2; 
+    color: #333;
+    margin-bottom: 20px; 
+}
+
+.title {
+    font-family: "Cheltenham", Georgia, serif; 
+    font-size: 7.5rem; 
+    font-weight: bold; 
+    line-height: 1.2; 
+    color: #333;
+    margin-bottom: 20px; 
+}
+
+.save-button {
+
+        background-color: #333; 
+        color: #fff; /
+    
 }

@@ -6,3 +6,4 @@ class TagForm(ModelForm):
     class Meta:
         model = Tag
         fields = ["name"]
+        labels = {"name": "Hashtag"}
