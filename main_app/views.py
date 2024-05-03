@@ -52,7 +52,10 @@ def queried_articles(request):
     nyt_articles = nyt_response["response"]["docs"]
 
     the_guardian_response = requests.get(the_guardian_base_url).json()
-    the_guardian_articles = the_guardian_response["response"]["results"]
+    articles = the_guardian_response["response"]["results"]
+    the_guardian_articles = sorted(
+        articles, key=lambda x: x["webPublicationDate"], reverse=True
+    )
 
     democracy_now_articles = scrapper(query)
 
