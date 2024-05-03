@@ -1,1 +1,1 @@
-web: gunicorn infostream.wsgi:application --log-file -
+web: gunicorn infostream.wsgi
