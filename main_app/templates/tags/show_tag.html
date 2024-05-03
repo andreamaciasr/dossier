@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ tag.name }}</h1>
+<div class="card-action">
+   
+</div>
+<div>
+    {% for article in articles %}
+    <ul>
+        <li><a href="{{ article.link }}" class="title">{{ article.headline }}</a></li>
+        <li>Publication date: {{ article.date }}</li>
+    </ul>
+    {% endfor %}
+</div>
+
+{% endblock %}
