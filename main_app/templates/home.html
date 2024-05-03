@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div><h1> Search for articles </h1></div>
+<div>
+    <h2> Search for articles </h2>
+</div>
 <div>
     <form action="{% url 'queried_articles' %}" method="GET">
         <input type="text" name="query" placeholder="Keyword...">&nbsp;&nbsp;From:
-        <input type="date" name="begin_date" placeholder="From...">&nbsp;&nbsp;To:
-        <input type="date" name="end_date" placeholder="To...">
-        <button type="submit">Search</button>
+        <input type="date" name="begin_date" placeholder="">&nbsp;&nbsp;To:
+        <input type="date" name="end_date" placeholder="">
+        <button type="submit" class="butn waves-effect waves-light center-align">
+            <span style="font-size: 1.3em;">Search</span>
+            <i class="material-icons right">search</i>
+        </button>
+        
     </form>
 
 </div>

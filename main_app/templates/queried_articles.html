@@ -3,13 +3,23 @@
 
 <h1>Articles about {{ query|capfirst }}</h1>
 
+<style>
+    .border-right {
+        border-right: 1px solid #ccc; 
+        padding-right: 15px; 
+    }
+    .column {
+        padding: 15px; /* Add padding to create space between the content and the column edges */
+    }
+</style>
+
 <div class="row">
-    <div class="col s12 m4">
+    <div class="col s12 m4 border-right">
         <h3>New York Times Articles</h3>
         {% for article in nyt_articles %}
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title"><a href="{{ article.web_url }}">{{ article.headline.main }}</a></span>
+        <div>
+            <div>
+                <span><a href="{{ article.web_url }}">{{ article.headline.main }}</a></span>
                 <p>{{ article.abstract }}</p>
                 <p>{{ article.pub_date }}</p>
                 {% if user.is_authenticated %}
@@ -25,12 +35,12 @@
         </div>
         {% endfor %}
     </div>
-    <div class="col s12 m4">
+    <div class="col s12 m4 border-right">
         <h3>The Guardian Articles</h3>
         {% for article in the_guardian_articles %}
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title"><a href="{{ article.webUrl }}">{{ article.webTitle }}</a></span>
+        <div>
+            <div>
+                <span><a href="{{ article.webUrl }}">{{ article.webTitle }}</a></span>
                 <p>{{ article.webPublicationDate }}</p>
                 {% if user.is_authenticated %}
                 <form method="POST" action="{% url 'save_article' %}">
@@ -49,8 +59,8 @@
         {% if democracy_now_articles %}
         <h3>Democracy Now! Recent articles on {{ query|capfirst }}</h3>
         {% for article in democracy_now_articles %}
-        <div class="card">
-            <div class="card-content">
+        <div>
+            <div>
                 <span class="card-title"><a href="{{ article.url }}">{{ article.title }}</a></span>
                 <p>{{ article.date }}</p>
                 {% if user.is_authenticated %}
