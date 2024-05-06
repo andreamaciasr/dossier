@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{ tag.name }}</h1>
-<div class="card-action">
-   
+<div style="display: flex; align-items: flex-end;">
+    <h1>{{ tag.name }}</h1>
+    <a href="{% url 'tags_update' pk=tag.id %}">
+        <i class="material-icons" style="color: gray;">create</i>
+    </a>
 </div>
+
 <div>
     {% for article in articles %}
     <ul>
