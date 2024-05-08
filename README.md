@@ -1,6 +1,6 @@
 # <InfoStream>
 
-This is an application to search for news articles in 3 different newspapers simoultaneosuly. It is meant to be a tool to get a more rounded view of a particular topic, as well as to get a general idea of the political discourse that each newspaper chooses to cover a certain news story, and how it evolves over time.
+This is an application to search for news articles in 3 different newspapers simoultaneosuly. It is meant to be a tool to get a more rounded view of a particular topic.
 It pulls information from the API's of The New York Times and The Guardian, and a simple scraper from the Democracy Now! website. 
 
 # Screenshot
